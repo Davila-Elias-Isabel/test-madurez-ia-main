@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import FloatingAsesora from "@/components/FloatingAsesora";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -41,6 +42,9 @@ export default function RootLayout({
             </p>
           </div>
         </footer>
+
+        {/* Asesora ENIA — botón flotante global */}
+        <FloatingAsesora />
 
         {/* Badge flotante — esquina inferior izquierda */}
         <a
