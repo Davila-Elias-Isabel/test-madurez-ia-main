@@ -167,7 +167,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     color: "#EF4444",
     bgColor: "#FEF2F2",
     description:
-      "La organización no ha iniciado formalmente su camino hacia la IA. Carece de talento especializado, proyectos concretos, conocimiento regulatorio y vínculos de colaboración.",
+      "Tu organización está por debajo del nivel inicial nacional. El 63% de entidades públicas peruanas ya está en nube — hay urgencia de empezar.",
     recommendation:
       "Priorizar la sensibilización directiva, identificar un responsable de IA, revisar la Ley N.° 31814 e inscribirse en los programas de Talento Digital de la SGTD como primer paso.",
   },
@@ -177,7 +177,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     color: "#F97316",
     bgColor: "#FFF7ED",
     description:
-      "La organización explora posibilidades de IA con iniciativas aisladas, pero sin estructura ni capacidades alineadas a los ejes de la ENIA 2026–2030.",
+      "Alineado al nivel promedio del sector público peruano (ENAD 2025). Hay bases, pero sin sistematización.",
     recommendation:
       "Formalizar un plan de formación, lanzar un piloto de IA apoyado por el CNIDIA, familiarizarse con la NTP-ISO/IEC 42001:2025 y publicar los primeros datasets en datos.gob.pe.",
   },
@@ -187,7 +187,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     color: "#EAB308",
     bgColor: "#FEFCE8",
     description:
-      "La organización avanza en los 4 ejes ENIA con iniciativas en marcha, pero aún existen brechas importantes en gobernanza ética, datos abiertos y colaboración.",
+      "Por encima del promedio nacional. Tienes condiciones para implementar las obligaciones del DS 115-2025-PCM.",
     recommendation:
       "Escalar pilotos a producción, adoptar formalmente la NTP-ISO/IEC 42001:2025, incorporar evaluaciones de impacto ético y participar activamente en mesas técnicas de la SGTD.",
   },
@@ -197,7 +197,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     color: "#3B82F6",
     bgColor: "#EFF6FF",
     description:
-      "La organización demuestra capacidades sólidas alineadas a la ENIA: talento formado, proyectos en producción, cumplimiento regulatorio y colaboración intersectorial.",
+      "Referente sectorial. Tu organización puede ser caso de uso en la Plataforma Nacional de IA del Estado (Eje 2 ENIA).",
     recommendation:
       "Consolidar el ecosistema de IA, ampliar la red de alianzas internacionales, explorar IA generativa y MLOps, y posicionarse como referente sectorial para transferir buenas prácticas.",
   },
@@ -207,7 +207,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     color: "#10B981",
     bgColor: "#ECFDF5",
     description:
-      "La organización es referente nacional en adopción responsable de IA, alineada plenamente con la ENIA 2026–2030: talento de alto nivel, datos abiertos, marcos éticos maduros y redes de colaboración consolidadas.",
+      "Candidato a articularse con el CNIDIA y redes de excelencia de la ENIA 2026–2030.",
     recommendation:
       "Liderar iniciativas nacionales de IA, contribuir a estándares sectoriales, desarrollar programas de transferencia de capacidades hacia otras entidades y participar activamente en la gobernanza global de IA.",
   },
