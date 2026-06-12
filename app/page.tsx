@@ -147,12 +147,17 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-slate-200 py-6 px-6 bg-white">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-400">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           <p>
             Basado en la{" "}
-            <strong className="text-slate-600">Estrategia Nacional de Inteligencia Artificial del Perú — ENIA 2026–2030</strong>
+            <strong className="text-slate-600">Estrategia Nacional de Inteligencia Artificial 2026–2030</strong>
           </p>
-          <p>Secretaría de Gobierno y Transformación Digital · PCM</p>
+          <div className="flex flex-col md:items-end gap-1 text-center md:text-right">
+            <p>Secretaría de Gobierno y Transformación Digital · PCM</p>
+            <p className="text-slate-300">
+              Ley N.° 31814 · DS 115-2025-PCM · NTP-ISO/IEC 42001:2025
+            </p>
+          </div>
         </div>
       </footer>
     </main>
