@@ -29,9 +29,19 @@ export default function Home() {
       <section className="flex-1 flex items-center justify-center px-6 py-16">
         <div className="max-w-3xl w-full text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-sm font-medium px-4 py-2 rounded-full border border-blue-200 mb-8">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-sm font-medium px-4 py-2 rounded-full border border-blue-200 mb-6">
             <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-            Herramienta oficial basada en ENIA 2025
+            Herramienta oficial basada en ENIA 2026–2030
+          </div>
+
+          {/* Context banner */}
+          <div className="bg-[#CE1126]/5 border border-[#CE1126]/20 rounded-xl px-5 py-4 mb-8 max-w-2xl mx-auto text-left">
+            <p className="text-sm text-slate-700 leading-relaxed">
+              <span className="font-bold text-[#CE1126]">Perú es el primer país de América Latina</span>{" "}
+              con una ley marco de IA{" "}
+              <span className="font-semibold text-slate-800">(Ley N.° 31814)</span>.{" "}
+              ¿Tu organización está lista para cumplir con la ENIA 2026–2030?
+            </p>
           </div>
 
           {/* Title */}
