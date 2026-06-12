@@ -20,7 +20,7 @@ export default function Home() {
             </div>
           </div>
           <span className="text-xs text-slate-400 font-medium">
-            Gobierno del Perú · 2025
+            Gobierno del Perú · 2026
           </span>
         </div>
       </header>
@@ -41,14 +41,14 @@ export default function Home() {
           </h1>
           <p className="text-lg text-slate-600 mb-4 max-w-2xl mx-auto leading-relaxed">
             Evalúa en menos de 5 minutos el nivel de madurez de tu organización en
-            Inteligencia Artificial, basado en los pilares de la{" "}
+            Inteligencia Artificial, alineado a los 4 ejes de la{" "}
             <strong className="text-slate-800">
-              Estrategia Nacional de IA del Perú (ENIA)
+              ENIA 2026–2030 del Perú
             </strong>
             .
           </p>
           <p className="text-sm text-slate-500 mb-10">
-            12 preguntas · Score del 0 al 100 · Diagnóstico por dimensión · Recomendaciones accionables
+            12 preguntas · 4 ejes ENIA · Score del 0 al 100 · Recomendaciones accionables
           </p>
 
           {/* CTA */}
@@ -72,29 +72,47 @@ export default function Home() {
       <section className="bg-white border-t border-slate-200 py-12 px-6">
         <div className="max-w-5xl mx-auto">
           <p className="text-center text-sm font-semibold text-slate-500 uppercase tracking-widest mb-8">
-            Dimensiones evaluadas
+            Ejes ENIA 2026–2030
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
-              { icon: "🎯", label: "Estrategia y Visión" },
-              { icon: "👥", label: "Liderazgo y Gobernanza" },
-              { icon: "🗄️", label: "Gestión de Datos" },
-              { icon: "🖥️", label: "Infraestructura Tecnológica" },
-              { icon: "🧠", label: "Talento y Capacidades" },
-              { icon: "📚", label: "Formación y Cultura Digital" },
-              { icon: "⚙️", label: "Implementación y Casos de Uso" },
-              { icon: "⚖️", label: "Ética e IA Responsable" },
-              { icon: "🔒", label: "Privacidad y Ciberseguridad" },
-              { icon: "🤝", label: "Colaboración e Innovación" },
-              { icon: "💰", label: "Presupuesto e Inversión" },
-              { icon: "📊", label: "Medición e Impacto" },
+              {
+                icon: "🧠",
+                label: "Eje 1 · Talento y Capacidades",
+                questions: ["Personal capacitado en IA", "Programas Talento Digital (SGTD)", "Plan de formación 12 meses"],
+              },
+              {
+                icon: "🚀",
+                label: "Eje 2 · Innovación y Emprendimiento",
+                questions: ["Proyectos piloto de IA", "Ecosistema CNIDIA", "Datos abiertos en datos.gob.pe"],
+              },
+              {
+                icon: "⚖️",
+                label: "Eje 3 · Marco Ético y Regulatorio",
+                questions: ["Ley N.° 31814", "NTP-ISO/IEC 42001:2025", "Evaluación de impacto ético"],
+              },
+              {
+                icon: "🤝",
+                label: "Eje 4 · Colaboración Nacional e Internacional",
+                questions: ["Gobernanza IA (SGTD, mesas técnicas)", "Plataforma Participa Perú", "Convenios y alianzas activas"],
+              },
             ].map((d) => (
               <div
                 key={d.label}
-                className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5"
+                className="flex flex-col gap-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3"
               >
-                <span className="text-lg">{d.icon}</span>
-                <span className="text-xs font-medium text-slate-700 leading-tight">{d.label}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">{d.icon}</span>
+                  <span className="text-sm font-semibold text-slate-800">{d.label}</span>
+                </div>
+                <ul className="space-y-1 pl-1">
+                  {d.questions.map((q) => (
+                    <li key={q} className="flex items-center gap-2 text-xs text-slate-500">
+                      <span className="w-1 h-1 bg-slate-400 rounded-full shrink-0" />
+                      {q}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
@@ -132,7 +150,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-400">
           <p>
             Basado en la{" "}
-            <strong className="text-slate-600">Estrategia Nacional de Inteligencia Artificial del Perú (ENIA)</strong>
+            <strong className="text-slate-600">Estrategia Nacional de Inteligencia Artificial del Perú — ENIA 2026–2030</strong>
           </p>
           <p>Secretaría de Gobierno y Transformación Digital · PCM</p>
         </div>
