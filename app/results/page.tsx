@@ -224,6 +224,13 @@ export default function ResultsPage() {
           </div>
         </div>
 
+        {/* Asesora ENIA */}
+        <AsesoraENIA
+          score={score}
+          levelLabel={level.label}
+          dimensionScores={dimensionScores}
+        />
+
         {/* ENIA reference */}
         <div className="bg-slate-800 rounded-2xl p-6 text-white">
           <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
@@ -276,13 +283,6 @@ export default function ResultsPage() {
           </button>
         </div>
       </main>
-
-      {/* Asesora ENIA — chat flotante */}
-      <AsesoraENIA
-        score={score}
-        levelLabel={level.label}
-        dimensionScores={dimensionScores}
-      />
     </div>
   );
 }
