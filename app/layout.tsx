@@ -42,12 +42,12 @@ export default function RootLayout({
           </div>
         </footer>
 
-        {/* Badge flotante — esquina inferior derecha */}
+        {/* Badge flotante — esquina inferior izquierda */}
         <a
           href="https://www.linkedin.com/in/davilaeliasisabel"
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-full px-3 py-2 shadow-lg border text-xs font-medium transition-opacity opacity-80 hover:opacity-100"
+          className="fixed bottom-4 left-4 z-40 flex items-center gap-2 rounded-full px-3 py-2 shadow-lg border text-xs font-medium transition-opacity opacity-80 hover:opacity-100"
           style={{ backgroundColor: "#003087", borderColor: "#003087", color: "#fff" }}
         >
           <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
