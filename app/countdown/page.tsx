@@ -48,47 +48,53 @@ function colorUrgencia(dias: number) {
 
 export default function CountdownENIA() {
   return (
-    <main className="max-w-2xl mx-auto px-4 py-12">
-      <p className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-2">
-        ENIA 2026–2030
-      </p>
-      <h1 className="text-2xl font-semibold text-gray-900 mb-1">
-        Plazos oficiales
-      </h1>
-      <p className="text-sm text-gray-500 mb-10">
-        Días hábiles restantes para cada compromiso normativo
-      </p>
+    <main className="min-h-screen bg-gray-50 px-4 py-10 sm:py-14">
+      <div className="max-w-2xl mx-auto">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-2">
+          ENIA 2026–2030
+        </p>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-1">
+          Plazos oficiales
+        </h1>
+        <p className="text-sm text-gray-500 mb-8">
+          Días hábiles restantes para cada compromiso normativo
+        </p>
 
-      <div className="flex flex-col gap-4">
-        {plazos.map((p) => {
-          const dias = diasHabiles(p.fecha);
-          const color = colorUrgencia(dias);
-          const pct = Math.min(100, Math.round((dias / 365) * 100));
+        <div className="flex flex-col gap-4">
+          {plazos.map((p) => {
+            const dias = diasHabiles(p.fecha);
+            const color = colorUrgencia(dias);
+            const pct = Math.min(100, Math.round((dias / 365) * 100));
 
-          return (
-            <div key={p.nombre}
-              className="border border-gray-100 rounded-xl p-5 bg-white">
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <div>
-                  <p className="text-sm font-medium text-gray-900">{p.nombre}</p>
-                  <p className="text-xs text-gray-400 mt-0.5">{p.descripcion}</p>
+            return (
+              <div key={p.nombre}
+                className="border border-gray-100 rounded-2xl p-5 bg-white shadow-sm">
+                {/* En móvil: apilado. En sm+: fila */}
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-3">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-gray-900 leading-snug">{p.nombre}</p>
+                    <p className="text-xs text-gray-400 mt-1 leading-relaxed">{p.descripcion}</p>
+                  </div>
+                  <span className={`self-start text-xs font-bold px-3 py-1.5 rounded-full border whitespace-nowrap ${color}`}>
+                    {dias} días hábiles
+                  </span>
                 </div>
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border whitespace-nowrap ${color}`}>
-                  {dias} días hábiles
-                </span>
-              </div>
 
-              <div className="w-full bg-gray-100 rounded-full h-1.5 mb-2">
-                <div
-                  className="h-1.5 rounded-full bg-current transition-all"
-                  style={{ width: `${pct}%` }}
-                />
-              </div>
+                <div className="w-full bg-gray-100 rounded-full h-2 mb-2">
+                  <div
+                    className="h-2 rounded-full transition-all"
+                    style={{
+                      width: `${pct}%`,
+                      backgroundColor: dias > 30 ? "#16a34a" : dias > 10 ? "#ca8a04" : "#dc2626",
+                    }}
+                  />
+                </div>
 
-              <p className="text-xs text-gray-300">{p.norma} · {p.fecha}</p>
-            </div>
-          );
-        })}
+                <p className="text-xs text-gray-300">{p.norma} · {p.fecha}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </main>
   );
