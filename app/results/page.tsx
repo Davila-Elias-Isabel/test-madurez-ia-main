@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getMaturityLevel, getDimensionScores, MATURITY_LEVELS } from "@/lib/questions";
 import { Answer } from "@/lib/types";
+import AsesoraENIA from "@/components/AsesoraENIA";
 
 interface StoredResult {
   answers: Answer[];
@@ -275,6 +276,13 @@ export default function ResultsPage() {
           </button>
         </div>
       </main>
+
+      {/* Asesora ENIA — chat flotante */}
+      <AsesoraENIA
+        score={score}
+        levelLabel={level.label}
+        dimensionScores={dimensionScores}
+      />
     </div>
   );
 }
