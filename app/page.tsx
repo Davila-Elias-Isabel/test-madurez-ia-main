@@ -62,15 +62,26 @@ export default function Home() {
           </p>
 
           {/* CTA */}
-          <Link
-            href="/test"
-            className="inline-flex items-center gap-2 bg-[#CE1126] hover:bg-[#a80e1e] text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-red-200 hover:shadow-xl hover:shadow-red-300 hover:-translate-y-0.5"
-          >
-            Iniciar evaluación
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/test"
+              className="inline-flex items-center gap-2 bg-[#CE1126] hover:bg-[#a80e1e] text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-red-200 hover:shadow-xl hover:shadow-red-300 hover:-translate-y-0.5"
+            >
+              Iniciar evaluación
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+            <Link
+              href="/countdown"
+              className="inline-flex items-center gap-2 border border-slate-300 hover:border-slate-400 text-slate-700 hover:text-slate-900 font-medium text-base px-6 py-4 rounded-xl transition-all duration-200 hover:bg-slate-50"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Plazos ENIA 2026–2030
+            </Link>
+          </div>
 
           <p className="mt-4 text-xs text-slate-400">
             Sin registro requerido · Resultados inmediatos · 100% gratuito
