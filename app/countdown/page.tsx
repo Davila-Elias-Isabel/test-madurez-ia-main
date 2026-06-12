@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { getBusinessDaysBetween } from "@/lib/businessDays";
 
 interface Plazo {
   nombre: string;
@@ -41,20 +42,11 @@ const PLAZOS: Plazo[] = [
   },
 ];
 
-// Cuenta días hábiles entre dos fechas (excluye sábados y domingos)
 function diasHabilesEntre(desde: Date, hasta: Date): number {
-  if (hasta <= desde) return 0;
-  let dias = 0;
-  const cursor = new Date(desde);
-  cursor.setHours(0, 0, 0, 0);
-  const fin = new Date(hasta);
-  fin.setHours(0, 0, 0, 0);
-  while (cursor < fin) {
-    const dow = cursor.getDay();
-    if (dow !== 0 && dow !== 6) dias++;
-    cursor.setDate(cursor.getDate() + 1);
-  }
-  return dias;
+  return getBusinessDaysBetween(
+    desde.toISOString().slice(0, 10),
+    hasta.toISOString().slice(0, 10),
+  );
 }
 
 function formatFecha(iso: string): string {
@@ -73,14 +65,14 @@ function getEstado(diasRestantes: number): Estado {
 
 const SEMAFORO: Record<Estado, {
   badge: string;
-  barColor: string;
+  bar: string;
   label: string;
   dot: string;
 }> = {
-  seguro:      { badge: "bg-green-50 text-green-700 border-green-200",   barColor: "#16a34a", label: "Plazo seguro",              dot: "bg-green-500" },
-  advertencia: { badge: "bg-yellow-50 text-yellow-700 border-yellow-200", barColor: "#ca8a04", label: "Advertencia · En proceso",  dot: "bg-yellow-500" },
-  urgente:     { badge: "bg-red-50 text-red-700 border-red-200",          barColor: "#dc2626", label: "Urgente · Próximo a vencer", dot: "bg-red-500" },
-  vencido:     { badge: "bg-gray-100 text-gray-400 border-gray-200",      barColor: "#9ca3af", label: "Vencido",                   dot: "bg-gray-400" },
+  seguro:      { badge: "bg-green-50 text-green-700 border-green-200",    bar: "bg-green-500",  label: "Plazo seguro",              dot: "bg-green-500" },
+  advertencia: { badge: "bg-yellow-50 text-yellow-700 border-yellow-200", bar: "bg-yellow-500", label: "Advertencia · En proceso",  dot: "bg-yellow-500" },
+  urgente:     { badge: "bg-red-50 text-red-700 border-red-200",          bar: "bg-red-500",    label: "Urgente · Próximo a vencer", dot: "bg-red-500" },
+  vencido:     { badge: "bg-gray-100 text-gray-400 border-gray-200",      bar: "bg-gray-400",   label: "Vencido",                   dot: "bg-gray-400" },
 };
 
 export default function CountdownENIA() {
@@ -143,7 +135,7 @@ export default function CountdownENIA() {
               : 100;
 
             const estado = getEstado(diasRestantes);
-            const sem    = SEMAFORO[estado];
+            const sem = SEMAFORO[estado];
 
             return (
               <div
@@ -176,8 +168,8 @@ export default function CountdownENIA() {
                 {/* Barra de progreso */}
                 <div className="w-full bg-gray-100 rounded-full h-2 mb-3 overflow-hidden">
                   <div
-                    className="h-2 rounded-full transition-all duration-700"
-                    style={{ width: `${pct}%`, backgroundColor: sem.barColor }}
+                    className={`h-2 rounded-full transition-all duration-700 ${sem.bar}`}
+                    style={{ width: `${pct}%` }}
                   />
                 </div>
 

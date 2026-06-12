@@ -62,7 +62,7 @@ export default function Home() {
           </p>
 
           {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 flex-wrap">
             <Link
               href="/test"
               className="inline-flex items-center justify-center gap-2 bg-[#CE1126] hover:bg-[#a80e1e] text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-red-200 hover:shadow-xl hover:shadow-red-300 hover:-translate-y-0.5"
@@ -71,6 +71,15 @@ export default function Home() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
+            </Link>
+            <Link
+              href="/mapa-obligaciones"
+              className="inline-flex items-center justify-center gap-2 bg-[#003087] hover:bg-[#002060] text-white font-semibold text-base px-6 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-0.5"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              Mapa de obligaciones
             </Link>
             <Link
               href="/countdown"
