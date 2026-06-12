@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ENTIDADES, getObligaciones, type TipoEntidad, type Obligacion } from "@/lib/obligaciones";
 
@@ -16,11 +16,6 @@ const PRIORIDAD_COLORS: Record<string, string> = {
   media: "bg-yellow-100 text-yellow-700 border-yellow-200",
   baja:  "bg-gray-100 text-gray-500 border-gray-200",
 };
-
-interface ChatMessage {
-  role: "user" | "assistant";
-  content: string;
-}
 
 function ObligacionCard({ ob }: { ob: Obligacion }) {
   const c = EJE_COLORS[ob.eje];
@@ -43,143 +38,6 @@ function ObligacionCard({ ob }: { ob: Obligacion }) {
       <p className="text-xs text-gray-500 leading-relaxed">{ob.descripcion}</p>
       <p className="text-xs text-gray-300">{ob.norma}</p>
     </div>
-  );
-}
-
-function ChatWidget({ entityLabel }: { entityLabel: string }) {
-  const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (open && messages.length === 0) {
-      setMessages([{
-        role: "assistant",
-        content: `Hola, soy tu asistente ENIA. Estás viendo las obligaciones para **${entityLabel}**. ¿Qué necesitas saber para cumplir con la ENIA 2026-2030?`,
-      }]);
-    }
-  }, [open, entityLabel, messages.length]);
-
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  async function send() {
-    const text = input.trim();
-    if (!text || loading) return;
-    const newMessages: ChatMessage[] = [...messages, { role: "user", content: text }];
-    setMessages(newMessages);
-    setInput("");
-    setLoading(true);
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: newMessages,
-          context: `El usuario representa a: ${entityLabel}`,
-        }),
-      });
-      const data = await res.json() as { content?: string; error?: string };
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: data.content ?? data.error ?? "Error al obtener respuesta." },
-      ]);
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: "No se pudo conectar con el asistente. Intenta nuevamente." },
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <>
-      {/* Floating button */}
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#CE1126] hover:bg-[#a80e1e] text-white font-semibold text-sm px-4 py-3 rounded-2xl shadow-lg shadow-red-300 transition-all"
-        aria-label="Abrir asistente ENIA"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-3 3v-3z" />
-        </svg>
-        <span className="hidden sm:inline">Asistente ENIA</span>
-      </button>
-
-      {/* Chat panel */}
-      {open && (
-        <div className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden" style={{ maxHeight: "70vh" }}>
-          {/* Header */}
-          <div className="bg-[#CE1126] px-4 py-3 flex items-center justify-between">
-            <div>
-              <p className="text-white font-bold text-sm">Asistente ENIA</p>
-              <p className="text-red-200 text-xs">Powered by Claude · ENIA 2026-2030</p>
-            </div>
-            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white p-1 rounded-lg" aria-label="Cerrar">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0">
-            {messages.map((m, i) => (
-              <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed whitespace-pre-wrap ${
-                  m.role === "user"
-                    ? "bg-[#CE1126] text-white rounded-br-sm"
-                    : "bg-gray-100 text-gray-800 rounded-bl-sm"
-                }`}>
-                  {m.content}
-                </div>
-              </div>
-            ))}
-            {loading && (
-              <div className="flex justify-start">
-                <div className="bg-gray-100 rounded-2xl rounded-bl-sm px-4 py-2">
-                  <span className="flex gap-1">
-                    <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                    <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                    <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                  </span>
-                </div>
-              </div>
-            )}
-            <div ref={bottomRef} />
-          </div>
-
-          {/* Input */}
-          <div className="border-t border-gray-100 p-3 flex gap-2">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && send()}
-              placeholder="Pregunta sobre ENIA, NTP-ISO 42001..."
-              className="flex-1 text-sm border border-gray-200 rounded-xl px-3 py-2 outline-none focus:border-[#CE1126] focus:ring-1 focus:ring-[#CE1126]/30"
-              disabled={loading}
-            />
-            <button
-              onClick={send}
-              disabled={loading || !input.trim()}
-              className="bg-[#CE1126] disabled:opacity-40 text-white p-2 rounded-xl hover:bg-[#a80e1e] transition-colors"
-              aria-label="Enviar"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
-    </>
   );
 }
 
@@ -312,8 +170,6 @@ export default function MapaObligaciones() {
           Ley N.° 31814 · DS 115-2025-PCM · NTP-ISO/IEC 42001:2025 · ENIA 2026–2030
         </p>
       </div>
-
-      {selected && <ChatWidget entityLabel={ENTIDADES[selected].label} />}
     </main>
   );
 }
