@@ -62,7 +62,7 @@ export default function TestPage() {
     <div className="min-h-screen flex flex-col bg-slate-50">
       {/* Top bar */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
-        <div className="max-w-2xl mx-auto px-6 py-4">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between mb-3">
             <Link href="/" className="text-sm text-slate-500 hover:text-slate-700 flex items-center gap-1.5">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,7 +85,7 @@ export default function TestPage() {
       </header>
 
       {/* Question content */}
-      <main className="flex-1 flex items-start justify-center px-6 py-10">
+      <main className="flex-1 flex items-start justify-center px-4 sm:px-6 py-8 sm:py-10">
         <div
           key={currentIndex}
           className="w-full max-w-2xl animate-fade-in-up"

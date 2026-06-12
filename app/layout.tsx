@@ -54,7 +54,7 @@ export default function RootLayout({
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V9h2v7zm-1-8a1 1 0 110-2 1 1 0 010 2zm8 8h-2v-3.5c0-.83-.67-1.5-1.5-1.5S13 11.67 13 12.5V16h-2V9h2v1.1c.52-.81 1.42-1.35 2.5-1.35C17.43 8.75 18 10.18 18 11.5V16z"/>
           </svg>
           <span>Rocío Dávila</span>
-          <span className="opacity-75">· Oficial de IA · ENIA Perú</span>
+          <span className="hidden sm:inline opacity-75">· Oficial de IA · ENIA Perú</span>
         </a>
       </body>
     </html>

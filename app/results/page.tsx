@@ -46,7 +46,7 @@ export default function ResultsPage() {
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Header */}
       <header className="bg-white border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <div className="flex">
               <div className="w-3 h-8 bg-[#CE1126] rounded-l-sm" />
@@ -68,10 +68,10 @@ export default function ResultsPage() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 pt-10 space-y-8">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 pt-8 sm:pt-10 space-y-6 sm:space-y-8">
         {/* Score hero card */}
         <div
-          className="rounded-2xl p-8 md:p-10 text-center animate-scale-in border"
+          className="rounded-2xl p-5 sm:p-8 md:p-10 text-center animate-scale-in border"
           style={{ backgroundColor: level.bgColor, borderColor: level.color + "33" }}
         >
           <p className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-4">
@@ -206,8 +206,8 @@ export default function ResultsPage() {
         </div>
 
         {/* Recommendation */}
-        <div className="rounded-2xl border-2 p-6 md:p-8" style={{ borderColor: level.color + "55", backgroundColor: level.bgColor }}>
-          <div className="flex items-start gap-4">
+        <div className="rounded-2xl border-2 p-4 sm:p-6 md:p-8" style={{ borderColor: level.color + "55", backgroundColor: level.bgColor }}>
+          <div className="flex items-start gap-3 sm:gap-4">
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
               style={{ backgroundColor: level.color }}
@@ -234,10 +234,10 @@ export default function ResultsPage() {
                 con enfoque en competitividad, inclusión y bienestar ciudadano.
               </p>
             </div>
-            <div className="flex flex-col gap-2 shrink-0">
+            <div className="flex flex-row sm:flex-col gap-2 w-full sm:w-auto shrink-0">
               <Link
                 href="/test"
-                className="inline-flex items-center gap-2 bg-[#CE1126] hover:bg-[#a80e1e] text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors text-center"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-[#CE1126] hover:bg-[#a80e1e] text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors text-center"
               >
                 Repetir test
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,7 +246,7 @@ export default function ResultsPage() {
               </Link>
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium text-sm px-5 py-2.5 rounded-xl transition-colors text-center"
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium text-sm px-5 py-2.5 rounded-xl transition-colors text-center"
               >
                 Inicio
               </Link>
