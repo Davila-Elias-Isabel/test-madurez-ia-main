@@ -57,7 +57,7 @@ export default function GlosarioPage() {
           <p className="text-xs font-semibold text-[#CE1126] uppercase tracking-widest mb-1">ENIA 2026–2030</p>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Glosario Interactivo</h1>
           <p className="text-sm text-gray-500">
-            Guía completa de términos sobre IA y la ENIA. {GLOSARIO.length} definiciones con ejemplos prácticos.
+            Guía completa de términos sobre IA y la ENIA. 40+ definiciones con ejemplos prácticos.
           </p>
         </div>
 
