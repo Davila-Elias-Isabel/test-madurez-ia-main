@@ -36,6 +36,7 @@ export default function PlanAccionPage() {
     metricas: "",
   });
   const [plan, setPlan] = useState<Plan | null>(null);
+  const [planId, setPlanId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [evidencia, setEvidencia] = useState("");
   const [tendencia, setTendencia] = useState("");
@@ -52,6 +53,7 @@ export default function PlanAccionPage() {
       });
       const data = await res.json();
       setPlan(data.plan);
+      setPlanId(data.id);
       setStep("plan");
     } catch (err) {
       alert("Error al generar plan: " + err);
@@ -255,7 +257,7 @@ export default function PlanAccionPage() {
               {/* Información de guardado */}
               <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                 <p className="text-sm text-green-800">
-                  ✅ <strong>Plan guardado en la base de datos.</strong> ID: {plan.id || "en proceso"}
+                  ✅ <strong>Plan guardado en la base de datos.</strong> {planId && `ID: ${planId}`}
                 </p>
               </div>
 
