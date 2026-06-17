@@ -73,22 +73,50 @@ export default function Home() {
               </svg>
             </Link>
             <Link
-              href="/mapa-obligaciones"
+              href="/plan-accion"
               className="inline-flex items-center justify-center gap-2 bg-[#003087] hover:bg-[#002060] text-white font-semibold text-base px-6 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-0.5"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Plan de Acción IA
+            </Link>
+            <Link
+              href="/mapa-obligaciones"
+              className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-slate-400 text-slate-700 hover:text-slate-900 font-medium text-base px-6 py-4 rounded-xl transition-all duration-200 hover:bg-slate-50"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
               </svg>
               Mapa de obligaciones
             </Link>
+          </div>
+
+          {/* Nuevas funcionalidades */}
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <Link
+              href="/checklist-oia"
+              className="flex flex-col items-center gap-2 p-4 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-center"
+            >
+              <span className="text-2xl">✓</span>
+              <span className="text-sm font-semibold text-slate-800">Checklist OIA</span>
+              <span className="text-xs text-slate-500">30+ requisitos</span>
+            </Link>
+            <Link
+              href="/glosario"
+              className="flex flex-col items-center gap-2 p-4 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-center"
+            >
+              <span className="text-2xl">📖</span>
+              <span className="text-sm font-semibold text-slate-800">Glosario ENIA</span>
+              <span className="text-xs text-slate-500">40+ términos</span>
+            </Link>
             <Link
               href="/countdown"
-              className="inline-flex items-center justify-center gap-2 border border-slate-300 hover:border-slate-400 text-slate-700 hover:text-slate-900 font-medium text-base px-6 py-4 rounded-xl transition-all duration-200 hover:bg-slate-50"
+              className="flex flex-col items-center gap-2 p-4 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors text-center"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Plazos ENIA 2026–2030
+              <span className="text-2xl">⏱️</span>
+              <span className="text-sm font-semibold text-slate-800">Plazos</span>
+              <span className="text-xs text-slate-500">2026-2030</span>
             </Link>
           </div>
 
