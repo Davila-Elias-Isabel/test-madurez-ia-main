@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { NextRequest } from "next/server";
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY_2 });
 
 const SYSTEM_PROMPT = `Eres la Asesora ENIA, especialista en la Estrategia Nacional de Inteligencia Artificial del Perú 2026-2030 (ENIA 2026-2030), aprobada por RM N° 152-2026-PCM. Orientas a funcionarios públicos, directivos y equipos de organizaciones peruanas.
 
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
       : SYSTEM_PROMPT;
 
     const response = await client.messages.create({
-      model: "claude-sonnet-4-6",
+      model: "claude-haiku-4-5",
       max_tokens: 1024,
       system: systemWithContext,
       messages,
