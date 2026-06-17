@@ -1,22 +1,36 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { GLOSARIO, type TerminoGlosario } from "@/lib/glosario-data";
+import { type TerminoGlosario } from "@/lib/glosario-data";
 
 export default function GlosarioPage() {
   const [busqueda, setBusqueda] = useState("");
   const [seleccionado, setSeleccionado] = useState<TerminoGlosario | null>(null);
   const [eje, setEje] = useState<number | null>(null);
+  const [terminos, setTerminos] = useState<TerminoGlosario[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const terminos = useMemo(() => {
-    return GLOSARIO.filter((t) => {
-      const coincideBusqueda =
-        t.termino.toLowerCase().includes(busqueda.toLowerCase()) ||
-        t.definicion.toLowerCase().includes(busqueda.toLowerCase());
-      const coincideEje = eje === null || t.eje === eje;
-      return coincideBusqueda && coincideEje;
-    });
+  // Buscar en Supabase cuando cambia busqueda o eje
+  useEffect(() => {
+    async function buscar() {
+      setLoading(true);
+      try {
+        const params = new URLSearchParams();
+        if (busqueda.trim()) params.append("q", busqueda);
+        if (eje !== null) params.append("eje", String(eje));
+
+        const res = await fetch(`/api/glosario/search?${params}`);
+        const data = await res.json();
+        setTerminos(data.data || []);
+      } catch (err) {
+        console.error("Error buscando glosario:", err);
+        setTerminos([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    buscar();
   }, [busqueda, eje]);
 
   return (
@@ -91,6 +105,19 @@ export default function GlosarioPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Lista de términos */}
           <div className="lg:col-span-1 space-y-2 max-h-[600px] overflow-y-auto">
+            {loading && (
+              <div className="text-center py-8">
+                <div className="inline-flex items-center gap-2 text-sm text-gray-500">
+                  <div className="w-2 h-2 rounded-full bg-gray-400 animate-pulse" />
+                  Buscando...
+                </div>
+              </div>
+            )}
+            {!loading && terminos.length === 0 && (
+              <div className="text-center py-8">
+                <p className="text-sm text-gray-400">No se encontraron términos</p>
+              </div>
+            )}
             {terminos.map((t) => (
               <button
                 key={t.id}

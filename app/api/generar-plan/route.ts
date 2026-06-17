@@ -74,18 +74,23 @@ Responde SOLO con JSON válido, sin markdown, sin explicaciones adicionales.`;
       .insert({
         tipo_entidad: preguntas.tipoEntidad,
         diagnostico: plan.diagnostico,
-        objetivos: plan.objetivos,
-        ejes: plan.ejes,
-        hitos: plan.hitos,
-        riscos: plan.riscos,
+        objetivos: plan.objetivos || [],
+        ejes: plan.ejes || {},
+        hitos: plan.hitos || [],
+        riscos: plan.riscos || [],
         siguiente_paso: plan.siguiente_paso,
-        created_at: new Date().toISOString(),
+        respuestas_formulario: preguntas,
+        estado: "generado",
       })
       .select();
 
-    if (error) throw error;
+    if (error) throw new Error(`Supabase error: ${error.message}`);
 
-    return Response.json({ plan, id: data?.[0]?.id });
+    return Response.json({
+      plan,
+      id: data?.[0]?.id,
+      savedInDatabase: true,
+    });
   } catch (err) {
     console.error("[generar-plan]", err);
     return Response.json({ error: String(err) }, { status: 500 });

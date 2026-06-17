@@ -252,6 +252,13 @@ export default function PlanAccionPage() {
                 <p className="text-sm">{plan.siguiente_paso}</p>
               </div>
 
+              {/* Información de guardado */}
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <p className="text-sm text-green-800">
+                  ✅ <strong>Plan guardado en la base de datos.</strong> ID: {plan.id || "en proceso"}
+                </p>
+              </div>
+
               {/* Revisar con evidencia */}
               <button
                 onClick={() => setStep("revision")}
