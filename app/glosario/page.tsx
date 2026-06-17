@@ -170,7 +170,7 @@ export default function GlosarioPage() {
                           <button
                             key={rel}
                             onClick={() => {
-                              const found = GLOSARIO.find((t) => t.termino === rel);
+                              const found = terminos.find((t) => t.termino === rel);
                               if (found) setSeleccionado(found);
                             }}
                             className="text-xs px-3 py-1.5 bg-blue-50 text-[#003087] rounded-full border border-blue-200 hover:bg-blue-100 transition-colors font-medium"
