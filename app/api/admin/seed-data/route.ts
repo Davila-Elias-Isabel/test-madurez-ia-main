@@ -10,10 +10,13 @@ import { CHECKLIST_ITEMS } from "@/lib/checklist-data";
  */
 export async function POST(req: Request) {
   try {
-    // Validar que sea una llamada local o desde Vercel
-    const authHeader = req.headers.get("authorization");
-    if (!authHeader?.includes(process.env.SEED_SECRET_KEY || "")) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+    // En producción, validar secret key. En desarrollo, permitir sin validación.
+    if (process.env.NODE_ENV === "production") {
+      const authHeader = req.headers.get("authorization");
+      const secretKey = process.env.SEED_SECRET_KEY || "seed-key";
+      if (!authHeader?.includes(secretKey)) {
+        return Response.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     const db = getSupabase();

@@ -67,29 +67,42 @@ Responde SOLO con JSON válido, sin markdown, sin explicaciones adicionales.`;
     const content = response.content[0].type === "text" ? response.content[0].text : "{}";
     const plan = JSON.parse(content);
 
-    // Guardar en Supabase
-    const db = getSupabase();
-    const { data, error } = await db
-      .from("planes_accion")
-      .insert({
-        tipo_entidad: preguntas.tipoEntidad,
-        diagnostico: plan.diagnostico,
-        objetivos: plan.objetivos || [],
-        ejes: plan.ejes || {},
-        hitos: plan.hitos || [],
-        riscos: plan.riscos || [],
-        siguiente_paso: plan.siguiente_paso,
-        respuestas_formulario: preguntas,
-        estado: "generado",
-      })
-      .select();
+    // Guardar en Supabase (opcional — si no está configurado, devolvemos igual)
+    let planId: string | null = null;
+    try {
+      const db = getSupabase();
+      const { data, error } = await db
+        .from("planes_accion")
+        .insert({
+          tipo_entidad: preguntas.tipoEntidad,
+          diagnostico: plan.diagnostico,
+          objetivos: plan.objetivos || [],
+          ejes: plan.ejes || {},
+          hitos: plan.hitos || [],
+          riscos: plan.riscos || [],
+          siguiente_paso: plan.siguiente_paso,
+          respuestas_formulario: preguntas,
+          estado: "generado",
+        })
+        .select();
 
-    if (error) throw new Error(`Supabase error: ${error.message}`);
+      if (error) {
+        console.warn(`Supabase insert warning: ${error.message}`);
+      } else {
+        planId = data?.[0]?.id || null;
+      }
+    } catch (dbErr) {
+      console.warn(`Supabase connection warning: ${dbErr}`);
+      // No fallar si Supabase no está configurado — solo loguear
+    }
 
     return Response.json({
       plan,
-      id: data?.[0]?.id,
-      savedInDatabase: true,
+      id: planId,
+      savedInDatabase: planId !== null,
+      message: planId
+        ? "Plan guardado en la base de datos"
+        : "Plan generado (base de datos no configurada)",
     });
   } catch (err) {
     console.error("[generar-plan]", err);
